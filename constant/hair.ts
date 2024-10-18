@@ -1,4 +1,16 @@
-const hairColors = [
+// 型定義
+export interface LabelValue {
+  label: string;
+  value: string;
+}
+
+export interface LabelTags {
+  label: string;
+  tags: LabelValue[] | LabelTags[];
+}
+
+// 各オブジェクトに型を適用
+const hairColors: LabelValue[] = [
   { label: "黒髪", value: "black hair" },
   { label: "茶髪", value: "brown hair" },
   { label: "金髪", value: "blonde hair" },
@@ -14,7 +26,7 @@ const hairColors = [
   { label: "ハイライトヘア", value: "highlighted hair" },
 ];
 
-const complexHairColors = [
+const complexHairColors: LabelValue[] = [
   { label: "マルチカラー", value: "multicolored hair" },
   { label: "パステルヘア", value: "pastel hair" },
   { label: "メッシュヘア", value: "streaked hair" },
@@ -23,7 +35,7 @@ const complexHairColors = [
   { label: "レインボーヘア", value: "rainbow hair" },
 ];
 
-const hairTextures = [
+const hairTextures: LabelValue[] = [
   { label: "艶髪", value: "glossy hair" },
   { label: "濡れ髪", value: "wet hair" },
   { label: "揺れ髪", value: "swaying hair" },
@@ -36,7 +48,7 @@ const hairTextures = [
   { label: "シルクのような髪", value: "silky hair" },
 ];
 
-const hairLengths = [
+const hairLengths: LabelValue[] = [
   { label: "ベリーショートヘア", value: "very short hair" },
   { label: "ショートヘア", value: "short hair" },
   { label: "ミディアムヘア", value: "medium hair" },
@@ -49,7 +61,7 @@ const hairLengths = [
   { label: "膝までの長さの髪", value: "knee-length hair" },
 ];
 
-const hairTypes = [
+const hairTypes: LabelValue[] = [
   { label: "直毛", value: "straight hair" },
   { label: "くせ毛", value: "messy hair" },
   { label: "外はね", value: "flipped hair" },
@@ -58,7 +70,7 @@ const hairTypes = [
   { label: "スパイキーヘア", value: "spiky hair" },
 ];
 
-const curlyHairStyles = [
+const curlyHairStyles: LabelValue[] = [
   { label: "巻き毛", value: "curly hair" },
   { label: "内巻き毛", value: "curl inside hair" },
   { label: "ウェーブヘア", value: "wavy hair" },
@@ -69,17 +81,17 @@ const curlyHairStyles = [
   { label: "パーマヘア", value: "permed hair" },
 ];
 
-const ponytailStyles = [
+const ponytailStyles: LabelValue[] = [
   { label: "ポニーテール", value: "ponytail" },
   { label: "ローポニーテール", value: "low ponytail" },
   { label: "サイドポニーテール", value: "side ponytail" },
   { label: "ハイポニーテール", value: "high ponytail" },
   { label: "ショートポニーテール", value: "short ponytail" },
   { label: "編み込みポニーテール", value: "braided ponytail" },
-  { label: "巻��毛ポニーテール", value: "curly ponytail" },
+  { label: "巻き毛ポニーテール", value: "curly ponytail" },
 ];
 
-const twintailStyles = [
+const twintailStyles: LabelValue[] = [
   { label: "ツインテール", value: "twintails" },
   { label: "ローツインテール", value: "low twintails" },
   { label: "ハイツインテール", value: "high twintails" },
@@ -88,7 +100,7 @@ const twintailStyles = [
   { label: "巻き毛ツインテール", value: "curly twintails" },
 ];
 
-const braidedHairStyles = [
+const braidedHairStyles: LabelValue[] = [
   { label: "三つ編み", value: "braided hair" },
   { label: "上から三つ編み", value: "french braid" },
   { label: "お団子頭", value: "hair bun" },
@@ -99,7 +111,7 @@ const braidedHairStyles = [
   { label: "かんざしを使ったお団子ヘア", value: "bun with chopsticks" },
 ];
 
-const bangsStyles = [
+const bangsStyles: LabelValue[] = [
   { label: "前髪", value: "bangs" },
   { label: "パッツン", value: "blunt bangs" },
   { label: "目隠れ", value: "hair over eyes" },
@@ -114,7 +126,7 @@ const bangsStyles = [
   { label: "うっすらとした前髪", value: "wispy bangs" },
 ];
 
-export const hairStylePrompts = [
+export const hairStylePrompts: LabelTags[] = [
   { label: "髪の長さ", tags: [...hairLengths] },
   { label: "ポニーテール", tags: [...ponytailStyles] },
   { label: "ツインテール", tags: [...twintailStyles] },
@@ -124,12 +136,12 @@ export const hairStylePrompts = [
   { label: "髪のタイプ", tags: [...hairTypes] },
 ];
 
-export const hairColorPrompts = [
+export const hairColorPrompts: LabelTags[] = [
   { label: "髪の色", tags: [...hairColors] },
   { label: "複数の髪色", tags: [...complexHairColors] },
 ];
 
-export const hairPrompts = [
+export const hairPrompts: LabelTags[] = [
   { label: "髪のスタイル", tags: [...hairStylePrompts] },
   { label: "髪の色", tags: [...hairColorPrompts] },
   { label: "髪の質感", tags: [...hairTextures] },
