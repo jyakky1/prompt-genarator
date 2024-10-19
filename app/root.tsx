@@ -1,34 +1,41 @@
-import { Links, Meta, Outlet, Scripts } from "@remix-run/react";
-import type { LinksFunction } from "@remix-run/node";
-
+import { Meta, Outlet, Scripts } from "@remix-run/react";
+import { ConfigProvider, theme, Spin, Flex } from "antd";
 import "antd/dist/reset.css";
-
-export const links: LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  },
-];
+import { useState, useEffect } from "react";
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const [isLoading, setIsLoading] = useState(true);
+  const config = {
+    algorithm: theme.darkAlgorithm,
+    token: {
+      colorText: "#ffffff",
+    },
+  };
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
+
   return (
     <html lang="ja">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
-        <Links />
       </head>
       <body>
-        <div className="min-h-screen bg-gray-100">
-          <div className="container mx-auto px-4 py-8">{children}</div>
-        </div>
+        <ConfigProvider theme={config}>
+          <Flex
+            vertical={true}
+            align="center"
+            style={{
+              width: "100%",
+              height: "100vh",
+              backgroundColor: "#292929",
+            }}>
+            {isLoading ? <Spin size="large" /> : <>{children}</>}
+          </Flex>
+        </ConfigProvider>
         <Scripts />
       </body>
     </html>

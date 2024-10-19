@@ -1,20 +1,13 @@
 import type { MetaFunction } from "@remix-run/react";
-import { useState, useEffect } from "react";
-import { Form } from "@remix-run/react";
-import {
-  Typography,
-  Button,
-  Input,
-  Space,
-  message,
-  Switch,
-  Breadcrumb,
-} from "antd";
-import { ArrowLeftOutlined } from "@ant-design/icons";
-import { hairPrompts } from "../../constant/hair";
+import { useState } from "react";
+import { Typography, Button, Space, Switch, Breadcrumb, Tag } from "antd";
+import { ArrowLeftOutlined, CloseOutlined } from "@ant-design/icons";
+import { hairTags } from "../../constant/hair";
+import PromptForm from "../components/PromptForm";
+import { useCurrentPrompts } from "../hooks/useCurrentPrompts";
+import { PromptCategory, PromptOption } from "constant/types";
 
-const { Title, Paragraph, Text } = Typography;
-const { TextArea } = Input;
+const { Title, Text } = Typography;
 
 export const meta: MetaFunction = () => {
   return [
@@ -28,93 +21,72 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   const [prompt, setPrompt] = useState("");
-  const [isClient, setIsClient] = useState(false);
   const [nsfwEnabled, setNsfwEnabled] = useState(false);
   const [currentLevel, setCurrentLevel] = useState(0);
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+  // 親も含め、選択されたcategory情報を格納している
+  // この中にvalueを持つ末端ノードの情報は入らない
+  const [selectedCategory, setSelectedCategory] = useState<PromptCategory[]>(
+    []
+  );
+  // 選択された末端ノードのプロンプト情報が格納される
+  const [selectedPrompt, setSelectedPromptList] = useState<PromptOption[]>([]);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  const handleOptionClick = (option: any, isFinal: boolean) => {
-    if (isFinal) {
-      if (selectedValues.includes(option.value)) {
-        // Remove value from prompt
-        setPrompt((prev) => {
-          const newPrompt = prev
-            .split(", ")
-            .filter((val) => val !== option.value)
-            .join(", ");
-          return newPrompt;
-        });
-        setSelectedValues((prev) => prev.filter((val) => val !== option.value));
-      } else {
-        // Add value to prompt
-        setPrompt((prev) => {
-          const newPrompt = prev ? `${prev}, ${option.value}` : option.value;
-          return newPrompt;
-        });
-        setSelectedValues((prev) => [...prev, option.value]);
-      }
+  const handleOptionClick = (option: PromptOption | PromptCategory) => {
+    if ("id" in option) {
+      setPrompt((prev) => {
+        const newPrompt = prev ? `${prev}, ${option.value}` : option.value;
+        return newPrompt;
+      });
+      setSelectedPromptList((prev) => [...prev, option]);
     } else {
-      setSelectedOptions((prev) => [...prev, option.label]);
+      setSelectedCategory((prev) => [...prev, option]);
       setCurrentLevel((prev) => prev + 1);
     }
   };
 
   const handleBreadcrumbClick = (index: number) => {
     setCurrentLevel(index);
-    setSelectedOptions((prev) => prev.slice(0, index));
-  };
-
-  const handleCopy = () => {
-    navigator.clipboard
-      .writeText(prompt)
-      .then(() => {
-        message.success("プロンプトをクリップボードにコピーしました");
-      })
-      .catch(() => {
-        message.error("コピーに失敗しました。");
-      });
+    setSelectedCategory((prev) => prev.slice(0, index));
   };
 
   const handleClear = () => {
     setPrompt("");
-    setCurrentLevel(0);
-    setSelectedOptions([]);
-    setSelectedValues([]);
+    setSelectedPromptList([]);
   };
 
   const handleNsfwToggle = (checked: boolean) => {
     setNsfwEnabled(checked);
   };
 
-  if (!isClient) {
-    return <div>Loading...</div>;
-  }
-
-  const getCurrentOptions = () => {
-    let options = hairPrompts;
-    for (let i = 0; i < currentLevel; i++) {
-      const selectedOption = options.find(
-        (opt) => opt.label === selectedOptions[i]
-      );
-      if (selectedOption && selectedOption.tags) {
-        options = selectedOption.tags;
-      }
-    }
-    return options;
+  const handleRemoveValue = (removePrompt: PromptOption) => {
+    setPrompt((prev) => {
+      const newPrompt = prev
+        .split(", ")
+        .filter((val) => val !== removePrompt.value)
+        .join(", ");
+      return newPrompt;
+    });
+    setSelectedPromptList((prev) =>
+      prev.filter((prevPrompt) => prevPrompt.id !== removePrompt.id)
+    );
   };
 
-  const currentOptions = getCurrentOptions();
+  const currentTags = useCurrentPrompts(hairTags, selectedCategory);
+
+  // Breadcrumb itemsを生成
+  const breadcrumbItems = [
+    { title: "top", onClick: () => handleBreadcrumbClick(0) },
+    ...selectedCategory.map((option, index) => ({
+      title: option.label,
+      onClick: () => handleBreadcrumbClick(index + 1),
+    })),
+  ];
 
   return (
     <div
       style={{
-        maxWidth: "800px",
-        margin: "32px auto 0px auto",
+        width: "800px",
+        marginTop: "32px",
         position: "relative",
       }}>
       <Title level={2}>AI生成用コマンドプロンプト作成</Title>
@@ -126,19 +98,8 @@ export default function Index() {
           style={{ marginLeft: "8px" }}
         />
       </div>
-      <Breadcrumb style={{ marginBottom: "16px" }}>
-        <Breadcrumb.Item onClick={() => handleBreadcrumbClick(0)}>
-          top
-        </Breadcrumb.Item>
-        {selectedOptions.map((option, index) => (
-          <Breadcrumb.Item
-            key={index}
-            onClick={() => handleBreadcrumbClick(index + 1)}>
-            {option}
-          </Breadcrumb.Item>
-        ))}
-      </Breadcrumb>
-      <Paragraph>
+      <Breadcrumb style={{ marginBottom: "16px" }} items={breadcrumbItems} />
+      <div>
         <Text strong>プロンプトタグ</Text>
         <Button
           icon={<ArrowLeftOutlined />}
@@ -146,35 +107,48 @@ export default function Index() {
           disabled={currentLevel === 0}
           style={{ marginLeft: "8px" }}
         />
-      </Paragraph>
-      <Space wrap style={{ marginBottom: "16px" }}>
-        {currentOptions.map((option, index) => (
-          <Button
-            key={index}
-            type={selectedValues.includes(option.value) ? "primary" : "default"}
-            onClick={() => handleOptionClick(option, !option.tags)}>
-            {option.label}
-          </Button>
-        ))}
-      </Space>
-      <Form>
-        <div>
-          <label htmlFor="prompt">プロンプト</label>
-          <TextArea
-            id="prompt"
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            placeholder="ここにプロンプトが表示されます"
-            autoSize={{ minRows: 6 }}
-          />
-        </div>
-      </Form>
-      <Space style={{ marginTop: "8px" }}>
-        <Button type="primary" onClick={handleCopy}>
-          クリップボードにコピー
-        </Button>
-        <Button onClick={handleClear}>フォームをクリア</Button>
-      </Space>
+      </div>
+      <div>
+        <Space wrap style={{ marginBottom: "16px" }}>
+          {selectedPrompt.map((value) => (
+            <Tag
+              key={value.id}
+              closable
+              onClose={() => handleRemoveValue(value)}
+              closeIcon={<CloseOutlined />}>
+              {value.label}
+            </Tag>
+          ))}
+        </Space>
+      </div>
+      <div>
+        <Space wrap style={{ marginBottom: "16px" }}>
+          {currentTags.map((option, index) => {
+            const isSelected = selectedPrompt.some((prompt) => {
+              return "id" in option ? prompt.id === option.id : false;
+            });
+
+            return isSelected ? (
+              <Button
+                key={index}
+                type="primary"
+                onClick={() => handleOptionClick(option)}
+                disabled={true}>
+                {option.label}
+              </Button>
+            ) : (
+              <Button
+                key={index}
+                type="default"
+                onClick={() => handleOptionClick(option)}
+                disabled={false}>
+                {option.label}
+              </Button>
+            );
+          })}
+        </Space>
+      </div>
+      <PromptForm prompt={prompt} setPrompt={setPrompt} onClear={handleClear} />
     </div>
   );
 }
