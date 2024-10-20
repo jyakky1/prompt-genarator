@@ -7,6 +7,7 @@ import { pose } from "./pose";
 import { cum } from "./cum";
 import { pussy } from "./pussy";
 import { underwear } from "./underwear";
+import { camera } from "./camera";
 
 export const prompts = [
   ...hair,
@@ -18,4 +19,5 @@ export const prompts = [
   ...cum,
   ...pussy,
   ...underwear,
+  ...camera,
 ];

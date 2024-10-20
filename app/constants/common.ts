@@ -23,12 +23,40 @@ const ponyPositivePrompts: PromptOption[] = [
   { id: 198, label: "score_4_up", value: "score_4_up" },
 ];
 
+const commonPositivePrompts: PromptOption[] = [
+  { id: 111, label: "nsfw", value: "nsfw" },
+];
+
+const commonNegativePrompts: PromptOption[] = [
+  { id: 111, label: "モザイク", value: "censored" },
+  { id: 111, label: "低品質", value: "low quality" },
+  { id: 111, label: "悪い品質", value: "bad quality" },
+  { id: 111, label: "最悪の品質", value: "worst quality" },
+  { id: 111, label: "JPEGアーティファクト", value: "jpeg artfacts" },
+  { id: 111, label: "余分な手", value: "extra hands" },
+  { id: 111, label: "悪い手", value: "bad hands" },
+  { id: 111, label: "融合した指", value: "fused fingers" },
+  { id: 111, label: "悪い指", value: "bad fingers" },
+  { id: 111, label: "悪い目", value: "bad eyes" },
+  { id: 111, label: "低品質の目", value: "low quality eyes" },
+  { id: 111, label: "男性の顔", value: "male face" },
+  { id: 111, label: "ロゴ", value: "logo" },
+  { id: 111, label: "サイン", value: "artist logo" },
+];
+
 const ponyPrompts: PromptCategory[] = [
   { label: "ポジティブ", tags: ponyPositivePrompts },
   { label: "ネガティブ", tags: ponyNegativePrompts },
 ];
+const commonPrompts: PromptCategory[] = [
+  { label: "ポジティブ", tags: commonPositivePrompts },
+  { label: "ネガティブ", tags: commonNegativePrompts },
+];
 
-const commonCategory: PromptCategory[] = [{ label: "pony", tags: ponyPrompts }];
+const commonCategory: PromptCategory[] = [
+  { label: "pony", tags: ponyPrompts },
+  { label: "全般", tags: commonPrompts },
+];
 
 export const common: PromptCategory[] = [
   { label: "共通", tags: commonCategory },
