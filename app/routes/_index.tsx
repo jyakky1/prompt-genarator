@@ -2,10 +2,10 @@ import type { MetaFunction } from "@remix-run/react";
 import { useState } from "react";
 import { Typography, Button, Space, Switch, Breadcrumb, Tag } from "antd";
 import { ArrowLeftOutlined, CloseOutlined } from "@ant-design/icons";
-import { prompts } from "../../constant/index";
+import { prompts } from "../constants/index";
 import PromptForm from "../components/PromptForm";
 import { useCurrentPrompts } from "../hooks/useCurrentPrompts";
-import { PromptCategory, PromptOption } from "constant/types";
+import { PromptCategory, PromptOption } from "../constants/types";
 
 const { Title, Text } = Typography;
 
