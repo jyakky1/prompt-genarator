@@ -73,7 +73,7 @@ const breastsCategory: PromptCategory[] = [
   { label: "胸の形状", tags: breastOption },
   { label: "乳首", tags: nipplesType },
   { label: "乳輪", tags: areolaeType },
-  { label: "乳首アクセサリー", tags: nippleAccessories },
+  { label: "アクセサリー", tags: nippleAccessories },
   { label: "胸の状態", tags: breastStatus },
 ];
 
