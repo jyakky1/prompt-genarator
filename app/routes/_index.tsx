@@ -137,12 +137,11 @@ export default function Index() {
               return "id" in option ? prompt.id === option.id : false;
             });
 
-            return isSelected ? (
+            return isSelected && "id" in option ? (
               <Button
                 key={index}
                 type="primary"
-                onClick={() => handleOptionClick(option)}
-                disabled={true}
+                onClick={() => handleRemoveValue(option)}
                 style={{ cursor: "pointer" }} // カーソルをポインターに設定
               >
                 {option.label}
