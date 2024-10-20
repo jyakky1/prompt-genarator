@@ -116,27 +116,25 @@ const bangsStyles: PromptOption[] = [
   { id: 86, label: "うっすらとした前髪", value: "wispy bangs" },
 ];
 
-export const hairStylePrompts: PromptCategory[] = [
-  { label: "髪の長さ", tags: [...hairLengths] },
-  { label: "ポニーテール", tags: [...ponytailStyles] },
-  { label: "ツインテール", tags: [...twintailStyles] },
-  { label: "三つ編み", tags: [...braidedHairStyles] },
-  { label: "前髪", tags: [...bangsStyles] },
-  { label: "巻き毛", tags: [...curlyHairStyles] },
-  { label: "髪のタイプ", tags: [...hairTypes] },
+const hairStyleCategory: PromptCategory[] = [
+  { label: "髪の長さ", tags: hairLengths },
+  { label: "ポニーテール", tags: ponytailStyles },
+  { label: "ツインテール", tags: twintailStyles },
+  { label: "三つ編み", tags: braidedHairStyles },
+  { label: "前髪", tags: bangsStyles },
+  { label: "巻き毛", tags: curlyHairStyles },
+  { label: "髪のタイプ", tags: hairTypes },
 ];
 
-export const hairColorPrompts: PromptCategory[] = [
-  { label: "髪の色", tags: [...hairColors] },
-  { label: "複数の髪色", tags: [...complexHairColors] },
+const hairColorCategory: PromptCategory[] = [
+  { label: "髪の色", tags: hairColors },
+  { label: "複数の髪色", tags: complexHairColors },
 ];
 
-export const hairPrompts: PromptCategory[] = [
-  { label: "髪のスタイル", tags: [...hairStylePrompts] },
-  { label: "髪の色", tags: [...hairColorPrompts] },
-  { label: "髪の質感", tags: [...hairTextures] },
+const hairCategory: PromptCategory[] = [
+  { label: "髪のスタイル", tags: hairStyleCategory },
+  { label: "髪の色", tags: hairColorCategory },
+  { label: "髪の質感", tags: hairTextures },
 ];
 
-export const hairTags: PromptCategory[] = [
-  { label: "髪型・髪色", tags: [...hairPrompts] },
-];
+export const hair: PromptCategory[] = [{ label: "髪", tags: hairCategory }];

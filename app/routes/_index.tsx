@@ -2,7 +2,7 @@ import type { MetaFunction } from "@remix-run/react";
 import { useState } from "react";
 import { Typography, Button, Space, Switch, Breadcrumb, Tag } from "antd";
 import { ArrowLeftOutlined, CloseOutlined } from "@ant-design/icons";
-import { hairTags } from "../../constant/hair";
+import { prompts } from "../../constant/index";
 import PromptForm from "../components/PromptForm";
 import { useCurrentPrompts } from "../hooks/useCurrentPrompts";
 import { PromptCategory, PromptOption } from "constant/types";
@@ -71,7 +71,7 @@ export default function Index() {
     );
   };
 
-  const currentTags = useCurrentPrompts(hairTags, selectedCategory);
+  const currentTags = useCurrentPrompts(prompts, selectedCategory);
 
   // Breadcrumb itemsを生成
   const breadcrumbItems = [
@@ -98,7 +98,10 @@ export default function Index() {
           style={{ marginLeft: "8px" }}
         />
       </div>
-      <Breadcrumb style={{ marginBottom: "16px" }} items={breadcrumbItems} />
+      <Breadcrumb
+        style={{ marginBottom: "16px", cursor: "pointer" }}
+        items={breadcrumbItems}
+      />
       <div>
         <Text strong>プロンプトタグ</Text>
         <Button
@@ -112,10 +115,16 @@ export default function Index() {
         <Space wrap style={{ marginBottom: "16px" }}>
           {selectedPrompt.map((value) => (
             <Tag
+              style={{
+                height: "26px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                cursor: "pointer",
+              }}
               key={value.id}
-              closable
-              onClose={() => handleRemoveValue(value)}
-              closeIcon={<CloseOutlined />}>
+              onClick={() => handleRemoveValue(value)}
+              icon={<CloseOutlined />}>
               {value.label}
             </Tag>
           ))}
@@ -133,7 +142,9 @@ export default function Index() {
                 key={index}
                 type="primary"
                 onClick={() => handleOptionClick(option)}
-                disabled={true}>
+                disabled={true}
+                style={{ cursor: "pointer" }} // カーソルをポインターに設定
+              >
                 {option.label}
               </Button>
             ) : (
@@ -141,7 +152,9 @@ export default function Index() {
                 key={index}
                 type="default"
                 onClick={() => handleOptionClick(option)}
-                disabled={false}>
+                disabled={false}
+                style={{ cursor: "pointer" }} // カーソルをポインターに設定
+              >
                 {option.label}
               </Button>
             );
