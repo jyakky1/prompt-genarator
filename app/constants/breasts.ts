@@ -68,6 +68,32 @@ const breastStatus: PromptOption[] = [
   { id: 142, label: "ノーブラ", value: "no bra" },
 ];
 
+const breastsPlay: PromptOption[] = [
+  { id: 150, label: "パイズリ", value: "paizuri" },
+  { id: 152, label: "パフパフ", value: "breast smother" },
+  { id: 153, label: "顔を胸に埋める", value: "face to breasts" },
+  { id: 155, label: "乳掴み", value: "breast grab" },
+  { id: 499, label: "胸揉み", value: "breast squeeze" },
+  { id: 495, label: "搾乳", value: "lactaion" },
+  { id: 490, label: "揺れる胸", value: "bouncing breasts" },
+  { id: 492, label: "潰される胸", value: "breast squish" },
+  { id: 493, label: "表面に押し付けられている", value: "against surface" },
+  { id: 494, label: "ぷるぷる揺れる", value: "jiggling" },
+  { id: 500, label: "胸を何かの上に乗せる姿勢", value: "breast rest" },
+];
+
+const nipplesPlay: PromptOption[] = [
+  { id: 143, label: "乳首舐め", value: "licking nipple" },
+  { id: 144, label: "乳吸い", value: "breast sucking" },
+  { id: 145, label: "乳首を擦る", value: "nipple rub" },
+  { id: 146, label: "乳首押しつけ", value: "nipple press" },
+  { id: 147, label: "乳首コリコリ", value: "nipple tweak" },
+  { id: 148, label: "乳首責め", value: "nipple torture" },
+  { id: 149, label: "乳首挟み", value: "nipple clamps" },
+  { id: 151, label: "乳首姦", value: "nipple penetration" },
+  { id: 498, label: "乳首つねり", value: "nipple pinch" },
+];
+
 const breastsCategory: PromptCategory[] = [
   { label: "胸のサイズ", tags: breastSizes },
   { label: "胸の形状", tags: breastOption },
@@ -75,6 +101,8 @@ const breastsCategory: PromptCategory[] = [
   { label: "乳輪", tags: areolaeType },
   { label: "アクセサリー", tags: nippleAccessories },
   { label: "胸の状態", tags: breastStatus },
+  { label: "胸でのプレイ", tags: breastsPlay },
+  { label: "胸でのプレイ", tags: nipplesPlay },
 ];
 
 export const breasts: PromptCategory[] = [
