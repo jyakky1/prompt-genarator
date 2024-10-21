@@ -25,6 +25,7 @@ const nipplesType: PromptOption[] = [
   { id: 112, label: "小さい乳首", value: "small nipples" },
   { id: 113, label: "陥没乳首", value: "inverted nipples" },
   { id: 114, label: "でっかい乳首", value: "huge nipples" },
+  { id: 117, label: "黒い乳首", value: "dark nipples" },
 ];
 
 const areolaeType: PromptOption[] = [
@@ -101,8 +102,8 @@ const breastsCategory: PromptCategory[] = [
   { label: "乳輪", tags: areolaeType },
   { label: "アクセサリー", tags: nippleAccessories },
   { label: "胸の状態", tags: breastStatus },
-  { label: "胸でのプレイ", tags: breastsPlay },
-  { label: "胸でのプレイ", tags: nipplesPlay },
+  { label: "胸プレイ", tags: breastsPlay },
+  { label: "乳首プレイ", tags: nipplesPlay },
 ];
 
 export const breasts: PromptCategory[] = [

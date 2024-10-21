@@ -64,6 +64,7 @@ const forcusPrompts: PromptOption[] = [
   { id: 408, label: "女性に焦点", value: "female focus" },
   { id: 409, label: "男性に焦点", value: "male focus" },
   { id: 410, label: "人間に焦点", value: "human focus" },
+  { id: 411, label: "頭に焦点", value: "head focus" },
   { id: 411, label: "足に焦点", value: "foot focus" },
   { id: 412, label: "尻に焦点", value: "butt focus" },
 ];

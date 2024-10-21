@@ -56,23 +56,26 @@ const pantyOptions: PromptOption[] = [
 ];
 
 const underwearPlay: PromptOption[] = [
+  { id: 517, label: "服を脱ぐ", value: "undressing" },
+  { id: 519, label: "服を持ち上げる", value: "clothing lift" },
+  { id: 519, label: "スカートめくり", value: "skirt lift" },
   { id: 290, label: "ブラ直し", value: "adjusting bra" },
   { id: 291, label: "ブラ脱ぎ", value: "bra lift" },
   { id: 292, label: "ブラ引っ張り", value: "bra pull" },
   { id: 293, label: "ノーブラ", value: "no bra" },
   { id: 294, label: "オープンブラ", value: "open bra" },
   { id: 295, label: "破れたブラ", value: "torn bra" },
-  { id: 296, label: "パンティー直し", value: "adjusting panties" },
+  { id: 541, label: "パンツを下げている", value: "panties down" },
+  { id: 543, label: "パンツをずらす", value: "panties aside" },
   { id: 297, label: "パンティーの中に手を入れる", value: "hand in panties" },
   { id: 298, label: "片足パンティー", value: "panties around one leg" },
   { id: 299, label: "パンティー引っ張り", value: "panty pull" },
   { id: 300, label: "パンツコキ", value: "panties on penis" },
-  { id: 301, label: "口にパンティー入れる", value: "panties in mouth" },
-  { id: 302, label: "口にパンティー入れる（スラング）", value: "panty gag" },
+  { id: 302, label: "パンティー猿轡", value: "panty gag" },
   { id: 303, label: "パンツずらし", value: "panties aside" },
   { id: 304, label: "パンツ染み", value: "stained panties" },
   { id: 305, label: "パンティーの中にバイブ", value: "vibrator under panties" },
-  { id: 517, label: "服を脱ぐ", value: "undressing" },
+  { id: 547, label: "何かを口にくわえた状態", value: "object in mouth" },
 ];
 
 const accessoryOptions: PromptOption[] = [

@@ -10,8 +10,16 @@ const buttPlay: PromptOption[] = [
   { id: 485, label: "尻を叩く行為", value: "spanking" },
 ];
 
-const buttPose: PromptOption[] = [];
+const buttSizes: PromptOption[] = [
+  { id: 486, label: "大きな尻", value: "big butt" },
+  { id: 487, label: "巨大な尻", value: "huge butt" },
+  { id: 488, label: "過剰に大きな尻", value: "hyper butt" },
+  { id: 489, label: "丸くて大きな尻", value: "bubble butt" },
+];
 
-const buttCategory: PromptCategory[] = [{ label: "尻プレイ", tags: buttPlay }];
+const buttCategory: PromptCategory[] = [
+  { label: "尻プレイ", tags: buttPlay },
+  { label: "尻のサイズ", tags: buttSizes },
+];
 
 export const butt: PromptCategory[] = [{ label: "尻", tags: buttCategory }];
