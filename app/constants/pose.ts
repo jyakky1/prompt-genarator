@@ -1,11 +1,11 @@
 import { PromptOption, PromptCategory } from "./types";
 
 const poseOptions: PromptOption[] = [
-  { id: 181, label: "仰向け", value: "lying, on back" },
   { id: 182, label: "四つん這い", value: "on all fours" },
+  { id: 468, label: "うつ伏せ", value: "on stomach" },
+  { id: 469, label: "あお向け", value: "on back" },
+  { id: 470, label: "寝そべる", value: "lying" },
   { id: 183, label: "頭を掴む", value: "head grab" },
-  { id: 184, label: "フェラ素振り", value: "fellatio gesture" },
-  { id: 185, label: "射精待ち", value: "oral invitation" },
   { id: 457, label: "かがむ", value: "bent over" },
   { id: 458, label: "うずくまる", value: "fetal position" },
   { id: 459, label: "正座", value: "seiza" },
@@ -17,10 +17,6 @@ const poseOptions: PromptOption[] = [
   { id: 465, label: "物に寄りかかる", value: "leaning on object" },
   { id: 466, label: "物体の上に座る", value: "sitting on object" },
   { id: 467, label: "ひざまずく", value: "kneeling" },
-  { id: 468, label: "うつ伏せ", value: "on stomach" },
-  { id: 469, label: "あお向け", value: "on back" },
-  { id: 470, label: "寝そべる", value: "lying" },
-  { id: 471, label: "服を持ち上げる", value: "clothes lift" },
 ];
 
 const armPoses: PromptOption[] = [
@@ -57,10 +53,22 @@ const legPoses: PromptOption[] = [
   { id: 478, label: "片膝をつく", value: "on one knee" },
 ];
 
+const specialPosePrompts: PromptOption[] = [
+  { id: 184, label: "フェラ素振り", value: "fellatio gesture" },
+  { id: 185, label: "射精待ち", value: "oral invitation" },
+  { id: 185, label: "四肢欠損", value: "amputee" },
+  { id: 1200, label: "ヨガポーズ", value: "yoga pose" },
+  { id: 1201, label: "バレエポーズ", value: "ballet pose" },
+  { id: 1206, label: "瞑想ポーズ", value: "meditation pose" },
+  { id: 1206, label: "ポールダンス", value: "pole dancing" },
+  { id: 1206, label: "入浴", value: "bathing" },
+];
+
 export const poseCategory: PromptCategory[] = [
   { label: "全身", tags: poseOptions },
   { label: "腕", tags: armPoses },
   { label: "脚", tags: legPoses },
+  { label: "特殊ポーズ", tags: specialPosePrompts },
 ];
 
 export const pose: PromptCategory[] = [{ label: "ポーズ", tags: poseCategory }];

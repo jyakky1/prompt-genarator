@@ -8,6 +8,7 @@ const bodyTypes: PromptOption[] = [
   { id: 91, label: "運動選手", value: "athletic" },
   { id: 92, label: "引き締まった", value: "toned" },
   { id: 93, label: "濡れた体", value: "wet body" },
+  { id: 93, label: "汗", value: "sweat" },
 ];
 
 const waistAndHips: PromptOption[] = [
@@ -37,7 +38,10 @@ const earFeatures: PromptOption[] = [
   { id: 650, label: "尖った耳", value: "pointy ears" },
   { id: 651, label: "長い耳", value: "long ears" },
   { id: 652, label: "大きな耳", value: "big ears" },
-  { id: 656, label: "偽の耳", value: "fake ears" },
+  { id: 656, label: "動物耳", value: "animal ears" },
+  { id: 656, label: "猫耳", value: "cat ears" },
+  { id: 656, label: "狐耳", value: "fox ears" },
+  { id: 656, label: "犬耳", value: "dog ears" },
 ];
 
 const femaleAge: PromptOption[] = [

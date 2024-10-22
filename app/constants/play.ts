@@ -60,6 +60,24 @@ const dominanceActions: PromptOption[] = [
   { id: 553, label: "口で持つ", value: "mouth hold" },
   { id: 556, label: "支配的な男性", value: "dominant male" },
   { id: 557, label: "支配的な女性", value: "dominant female" },
+  { id: 611, label: "障害", value: "disability" },
+  { id: 612, label: "四肢欠損", value: "amputee" },
+  { id: 613, label: "死", value: "death" },
+  { id: 614, label: "ゴア表現", value: "gore" },
+  { id: 615, label: "内臓", value: "organs" },
+  { id: 617, label: "破壊", value: "destruction" },
+];
+
+const skinshipPrompts: PromptOption[] = [
+  { id: 600, label: "抱擁", value: "embrace" },
+  { id: 601, label: "抱擁2", value: "hug" },
+  { id: 602, label: "抱き合う", value: "cuddling" },
+  { id: 604, label: "手をつなぐ", value: "hand holding" },
+  { id: 605, label: "肩に手を置く", value: "hand on shoulder" },
+  { id: 607, label: "キスをしている", value: "kissing" },
+  { id: 609, label: "ディープキス", value: "french kissing" },
+  { id: 610, label: "唇へのキス", value: "kiss on lips" },
+  { id: 608, label: "互いに目を見合わせている", value: "eye contact" },
 ];
 
 const playCategory: PromptCategory[] = [
@@ -67,6 +85,7 @@ const playCategory: PromptCategory[] = [
   { label: "まんこ", tags: pussyActions },
   { label: "緊縛", tags: bondageActions },
   { label: "支配", tags: dominanceActions },
+  { label: "スキンシップ", tags: skinshipPrompts },
 ];
 
 export const play: PromptCategory[] = [{ label: "プレイ", tags: playCategory }];
