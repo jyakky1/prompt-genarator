@@ -112,7 +112,7 @@ export default function Index() {
         />
       </div>
       <div>
-        <Space wrap style={{ marginBottom: "16px" }}>
+        <Space wrap style={{ marginTop: "16px" }}>
           {selectedPrompt.map((value) => (
             <Tag
               style={{
@@ -122,6 +122,7 @@ export default function Index() {
                 alignItems: "center",
                 cursor: "pointer",
               }}
+              color="#1668dc"
               key={value.id}
               onClick={() => handleRemoveValue(value)}
               icon={<CloseOutlined />}>
@@ -131,7 +132,7 @@ export default function Index() {
         </Space>
       </div>
       <div>
-        <Space wrap style={{ marginBottom: "16px" }}>
+        <Space wrap style={{ marginBottom: "16px", marginTop: "16px" }}>
           {currentTags.map((option, index) => {
             const isSelected = selectedPrompt.some((prompt) => {
               return "id" in option ? prompt.id === option.id : false;
@@ -142,8 +143,7 @@ export default function Index() {
                 key={index}
                 type="primary"
                 onClick={() => handleRemoveValue(option)}
-                style={{ cursor: "pointer" }} // カーソルをポインターに設定
-              >
+                style={{ cursor: "pointer" }}>
                 {option.label}
               </Button>
             ) : (
@@ -152,8 +152,7 @@ export default function Index() {
                 type="default"
                 onClick={() => handleOptionClick(option)}
                 disabled={false}
-                style={{ cursor: "pointer" }} // カーソルをポインターに設定
-              >
+                style={{ cursor: "pointer" }}>
                 {option.label}
               </Button>
             );
