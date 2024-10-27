@@ -25,8 +25,7 @@ const cameraAngles: PromptOption[] = [
 const wideAngles: PromptOption[] = [
   { id: 414, label: "上から2 / 高角", value: "high angle" },
   { id: 416, label: "下から2 / 低角", value: "low angle" },
-  { id: 413, label: "広角", value: "wide angle" },
-  { id: 415, label: "広角2 (出やすい)", value: "wide shot" },
+  { id: 415, label: "広角", value: "wide shot" },
   { id: 417, label: "広角3 (透視図法)", value: "perspective" },
   { id: 418, label: "鳥瞰図(ちょうかんず)", value: "bird's eye view" },
   { id: 419, label: "蟲瞰図(ちゅうかんず)", value: "worm's eye view" },
@@ -44,19 +43,12 @@ const lookingPrompts: PromptOption[] = [
   { id: 394, label: "他者を見ている", value: "looking at another" },
   { id: 396, label: "そっぽを向いている", value: "looking away" },
   { id: 398, label: "視線を少し横に向けている", value: "looking aside" },
-  { id: 403, label: "パートナーを見ている", value: "looking at partner" },
-  { id: 405, label: "カメラ目線で微笑む", value: "smiling at viewer" },
 ];
 
 const subjectPrompts: PromptOption[] = [
   { id: 378, label: "全身", value: "full body" },
   { id: 379, label: "接写", value: "close-up" },
   { id: 380, label: "体の上半分", value: "upper body" },
-  { id: 381, label: "膝上から上", value: "cowboy shot" },
-  { id: 386, label: "足が画角に入らない", value: "feet out of frame" },
-  { id: 387, label: "顔が画角に入らない", value: "head out of frame" },
-  { id: 384, label: "同じキャラが一枚の中に複数", value: "multiple views" },
-  { id: 407, label: "カメラ目線で何かを喋る", value: "talking to viewer" },
 ];
 
 const forcusPrompts: PromptOption[] = [

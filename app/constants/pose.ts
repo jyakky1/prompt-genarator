@@ -2,6 +2,7 @@ import { PromptOption, PromptCategory } from "./types";
 
 const poseOptions: PromptOption[] = [
   { id: 182, label: "四つん這い", value: "on all fours" },
+  { id: 182, label: "犬四つん這い", value: "doggystyle" },
   { id: 468, label: "うつ伏せ", value: "on stomach" },
   { id: 469, label: "あお向け", value: "on back" },
   { id: 470, label: "寝そべる", value: "lying" },
@@ -56,7 +57,6 @@ const legPoses: PromptOption[] = [
 const specialPosePrompts: PromptOption[] = [
   { id: 184, label: "フェラ素振り", value: "fellatio gesture" },
   { id: 185, label: "射精待ち", value: "oral invitation" },
-  { id: 185, label: "四肢欠損", value: "amputee" },
   { id: 1200, label: "ヨガポーズ", value: "yoga pose" },
   { id: 1201, label: "バレエポーズ", value: "ballet pose" },
   { id: 1206, label: "瞑想ポーズ", value: "meditation pose" },

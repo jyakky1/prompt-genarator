@@ -10,18 +10,20 @@ import { underwear } from "./underwear";
 import { camera } from "./camera";
 import { common } from "./common";
 import { butt } from "./butt";
+import { color } from "./color";
 
 export const prompts = [
+  ...common,
+  ...camera,
   ...hair,
   ...body,
-  ...breasts,
-  ...play,
   ...face,
   ...pose,
+  ...breasts,
+  ...play,
   ...cum,
   ...pussy,
   ...underwear,
-  ...camera,
-  ...common,
   ...butt,
+  ...color,
 ];

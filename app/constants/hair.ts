@@ -25,19 +25,6 @@ const complexHairColors: PromptOption[] = [
   { id: 19, label: "レインボーヘア", value: "rainbow hair" },
 ];
 
-const hairTextures: PromptOption[] = [
-  { id: 20, label: "艶髪", value: "glossy hair" },
-  { id: 21, label: "濡れ髪", value: "wet hair" },
-  { id: 22, label: "揺れ髪", value: "swaying hair" },
-  { id: 23, label: "つややかな髪", value: "sleek hair" },
-  { id: 24, label: "細い髪", value: "thin hair" },
-  { id: 25, label: "太い髪", value: "thick hair" },
-  { id: 26, label: "柔らかい髪", value: "soft hair" },
-  { id: 27, label: "オイリーな髪", value: "oily hair" },
-  { id: 28, label: "乾燥した髪", value: "dry hair" },
-  { id: 29, label: "シルクのような髪", value: "silky hair" },
-];
-
 const hairLengths: PromptOption[] = [
   { id: 30, label: "ベリーショートヘア", value: "very short hair" },
   { id: 31, label: "ショートヘア", value: "short hair" },
@@ -114,6 +101,7 @@ const bangsStyles: PromptOption[] = [
   { id: 84, label: "前髪を横に流す", value: "swept bangs" },
   { id: 85, label: "カーテンバング", value: "curtain bangs" },
   { id: 86, label: "うっすらとした前髪", value: "wispy bangs" },
+  { id: 87, label: "姫カット", value: "hime cut" },
 ];
 
 const hairStyleCategory: PromptCategory[] = [
@@ -134,7 +122,6 @@ const hairColorCategory: PromptCategory[] = [
 const hairCategory: PromptCategory[] = [
   { label: "髪のスタイル", tags: hairStyleCategory },
   { label: "髪の色", tags: hairColorCategory },
-  { label: "髪の質感", tags: hairTextures },
 ];
 
 export const hair: PromptCategory[] = [{ label: "髪", tags: hairCategory }];

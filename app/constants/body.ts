@@ -6,12 +6,12 @@ const bodyTypes: PromptOption[] = [
   { id: 89, label: "スリム", value: "slim" },
   { id: 90, label: "スレンダー", value: "slender" },
   { id: 91, label: "運動選手", value: "athletic" },
-  { id: 92, label: "引き締まった", value: "toned" },
+  { id: 87, label: "裸", value: "nude" },
   { id: 93, label: "濡れた体", value: "wet body" },
-  { id: 93, label: "汗", value: "sweat" },
+  { id: 93, label: "汗の滴", value: "sweatdrop" },
 ];
 
-const waistAndHips: PromptOption[] = [
+const waistPrompts: PromptOption[] = [
   { id: 620, label: "細い腰", value: "small waist" },
   { id: 621, label: "広い腰", value: "wide hips" },
   { id: 622, label: "極端に大きな腰", value: "huge hips" },
@@ -23,6 +23,7 @@ const bodyParts: PromptOption[] = [
   { id: 602, label: "体の下半分", value: "lower body" },
   { id: 603, label: "体の背面", value: "back" },
   { id: 604, label: "肩", value: "shoulders" },
+  { id: 604, label: "鎖骨", value: "collarbone" },
   { id: 605, label: "尻", value: "buttocks" },
   { id: 606, label: "顔", value: "face" },
   { id: 607, label: "頭", value: "head" },
@@ -32,16 +33,6 @@ const bodyParts: PromptOption[] = [
   { id: 611, label: "足", value: "legs" },
   { id: 611, label: "爪", value: "nails" },
   { id: 611, label: "手の爪", value: "fingernails" },
-];
-
-const earFeatures: PromptOption[] = [
-  { id: 650, label: "尖った耳", value: "pointy ears" },
-  { id: 651, label: "長い耳", value: "long ears" },
-  { id: 652, label: "大きな耳", value: "big ears" },
-  { id: 656, label: "動物耳", value: "animal ears" },
-  { id: 656, label: "猫耳", value: "cat ears" },
-  { id: 656, label: "狐耳", value: "fox ears" },
-  { id: 656, label: "犬耳", value: "dog ears" },
 ];
 
 const femaleAge: PromptOption[] = [
@@ -78,11 +69,10 @@ const skinPrompts: PromptOption[] = [
 
 const bodyCategategory: PromptCategory[] = [
   { label: "体型・体質", tags: bodyTypes },
-  { label: "腰とヒップ", tags: waistAndHips },
+  { label: "腰", tags: waistPrompts },
   { label: "体の部位", tags: bodyParts },
   { label: "年齢", tags: femaleAge },
-  { label: "男性の年齢と体型", tags: malePrompts },
-  { label: "耳", tags: earFeatures },
+  { label: "男性", tags: malePrompts },
   { label: "肌", tags: skinPrompts },
 ];
 

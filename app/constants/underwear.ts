@@ -56,6 +56,7 @@ const pantyOptions: PromptOption[] = [
 ];
 
 const underwearPlay: PromptOption[] = [
+  { id: 517, label: "服が透ける", value: "see through" },
   { id: 517, label: "服を脱ぐ", value: "undressing" },
   { id: 519, label: "服を持ち上げる", value: "clothing lift" },
   { id: 519, label: "スカートめくり", value: "skirt lift" },
