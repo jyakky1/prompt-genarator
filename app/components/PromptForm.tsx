@@ -1,5 +1,5 @@
 import { Button, Input, Space, message, Form } from "antd";
-import { useEffect } from "react";
+import { useEffect, FC } from "react";
 
 const { TextArea } = Input;
 
@@ -9,11 +9,11 @@ interface PromptFormProps {
   onClear: () => void;
 }
 
-export default function PromptForm({
+const PromptFormComponent: FC<PromptFormProps> = ({
   prompt,
   setPrompt,
   onClear,
-}: PromptFormProps) {
+}) => {
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -51,4 +51,6 @@ export default function PromptForm({
       </Form.Item>
     </Form>
   );
-}
+};
+
+export default PromptFormComponent;

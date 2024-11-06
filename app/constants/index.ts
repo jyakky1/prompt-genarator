@@ -11,6 +11,8 @@ import { camera } from "./camera";
 import { common } from "./common";
 import { butt } from "./butt";
 import { color } from "./color";
+import { accessory } from "./accessory";
+import { clothes } from "./clothes";
 
 export const prompts = [
   ...common,
@@ -19,10 +21,12 @@ export const prompts = [
   ...hair,
   ...body,
   ...face,
-  ...underwear,
   ...breasts,
   ...butt,
   ...pussy,
+  ...accessory,
+  ...underwear,
+  ...clothes,
   ...play,
   ...cum,
   ...color,

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Typography, Button, Space, Switch, Breadcrumb, Tag } from "antd";
 import { ArrowLeftOutlined, CloseOutlined } from "@ant-design/icons";
 import { prompts } from "../constants/index";
-import PromptForm from "../components/PromptForm";
+import PromptForm from "../components/promptForm";
 import { useCurrentPrompts } from "../hooks/useCurrentPrompts";
 import { PromptCategory, PromptOption } from "../constants/types";
 

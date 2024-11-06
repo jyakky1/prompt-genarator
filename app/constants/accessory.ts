@@ -24,22 +24,47 @@ const eyewearPrompts: PromptOption[] = [
   { id: 15, label: "目隠し", value: "blindfold" },
 ];
 
+const hatPrompts: PromptOption[] = [
+  { id: 16, label: "帽子", value: "hat" },
+  { id: 17, label: "日よけ帽子", value: "sun hat" },
+  { id: 18, label: "わら製の帽子", value: "straw hat" },
+  { id: 19, label: "魔女の帽子", value: "witch hat" },
+  { id: 20, label: "フード", value: "hood" },
+  { id: 21, label: "王冠", value: "crown" },
+  { id: 22, label: "ティアラ", value: "tiara" },
+];
+
 const otherAccessory: PromptOption[] = [
-  { id: 16, label: "マスク", value: "mask" },
-  { id: 17, label: "首に付ける鈴", value: "neck bell" },
-  { id: 18, label: "カウベル", value: "cowbell" },
-  { id: 19, label: "ネックレス", value: "necklace" },
-  { id: 20, label: "ペンダント", value: "pendant" },
-  { id: 21, label: "ブレスレット", value: "bracelet" },
-  { id: 22, label: "結婚指輪", value: "wedding ring" },
-  { id: 23, label: "羽", value: "feathers" },
+  { id: 23, label: "マスク", value: "mask" },
+  { id: 24, label: "首に付ける鈴", value: "neck bell" },
+  { id: 25, label: "カウベル", value: "cowbell" },
+  { id: 26, label: "ネックレス", value: "necklace" },
+  { id: 27, label: "ペンダント", value: "pendant" },
+  { id: 28, label: "ブレスレット", value: "bracelet" },
+  { id: 29, label: "結婚指輪", value: "wedding ring" },
+  { id: 30, label: "羽", value: "feathers" },
+  { id: 31, label: "翼", value: "wings" },
+  { id: 32, label: "天使の輪", value: "halo" },
+];
+
+const hornOptions: PromptOption[] = [
+  { id: 33, label: "角", value: "horns" },
+  { id: 34, label: "一本角", value: "single horn" },
+  { id: 35, label: "悪魔の角", value: "demon horns" },
+  { id: 36, label: "竜の角", value: "dragon horns" },
+  { id: 37, label: "鬼の角", value: "oni horns" },
+  { id: 38, label: "牛の角", value: "cow horns" },
+  { id: 39, label: "渦巻き状の角", value: "curled horns" },
+  { id: 40, label: "山羊の角", value: "goat horns" },
 ];
 
 const accessoryCategory: PromptCategory[] = [
   { label: "ピアス", tags: piercingPrompts },
   { label: "イヤリング", tags: earringsPrompts },
   { label: "メガネ", tags: eyewearPrompts },
+  { label: "帽子", tags: hatPrompts },
   { label: "その他", tags: otherAccessory },
+  { label: "角", tags: hornOptions },
 ];
 
 export const accessory: PromptCategory[] = [
