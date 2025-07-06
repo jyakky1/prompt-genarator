@@ -42,38 +42,39 @@ const lookingPrompts: PromptOption[] = [
   { id: 432, label: "他者を見ている", value: "looking at another" },
   { id: 433, label: "そっぽを向いている", value: "looking away" },
   { id: 434, label: "視線を少し横に向けている", value: "looking aside" },
+  { id: 435, label: "頭を後ろにのけぞる", value: "head back" },
 ];
 
 const subjectPrompts: PromptOption[] = [
-  { id: 435, label: "全身", value: "full body" },
-  { id: 436, label: "接写", value: "close-up" },
-  { id: 437, label: "体の上半分", value: "upper body" },
+  { id: 436, label: "全身", value: "full body" },
+  { id: 437, label: "接写", value: "close-up" },
+  { id: 438, label: "体の上半分", value: "upper body" },
 ];
 
 const forcusPrompts: PromptOption[] = [
-  { id: 438, label: "人物の顔に焦点", value: "portrait" },
-  { id: 439, label: "女性に焦点", value: "female focus" },
-  { id: 440, label: "男性に焦点", value: "male focus" },
-  { id: 441, label: "人間に焦点", value: "human focus" },
-  { id: 442, label: "頭に焦点", value: "head focus" },
-  { id: 443, label: "足に焦点", value: "foot focus" },
-  { id: 444, label: "尻に焦点", value: "butt focus" },
+  { id: 439, label: "人物の顔に焦点", value: "portrait" },
+  { id: 440, label: "女性に焦点", value: "female focus" },
+  { id: 441, label: "男性に焦点", value: "male focus" },
+  { id: 442, label: "人間に焦点", value: "human focus" },
+  { id: 443, label: "頭に焦点", value: "head focus" },
+  { id: 444, label: "足に焦点", value: "foot focus" },
+  { id: 445, label: "尻に焦点", value: "butt focus" },
 ];
 
 const effectPrompts: PromptOption[] = [
-  { id: 445, label: "対話、台詞", value: "dialogue" },
-  { id: 446, label: "吹き出し", value: "speech bubble" },
-  { id: 447, label: "効果音", value: "sound effects" },
-  { id: 448, label: "様々な効果音", value: "different sound effects" },
-  { id: 449, label: "擬音語", value: "onomatopoeia" },
-  { id: 450, label: "体の音", value: "bodily noises" },
-  { id: 451, label: "下品または冒涜的な言葉", value: "profanity" },
-  { id: 452, label: "感嘆符（！）など", value: "exclamation point" },
-  { id: 453, label: "疑問を表す記号（？）", value: "question mark" },
-  { id: 454, label: "?!", value: "?!" },
-  { id: 455, label: "感情表現記号", value: "emanata" },
-  { id: 456, label: "何", value: "what" },
-  { id: 457, label: "ハートマーク", value: "heart icon" },
+  { id: 446, label: "対話、台詞", value: "dialogue" },
+  { id: 447, label: "吹き出し", value: "speech bubble" },
+  { id: 448, label: "効果音", value: "sound effects" },
+  { id: 449, label: "様々な効果音", value: "different sound effects" },
+  { id: 450, label: "擬音語", value: "onomatopoeia" },
+  { id: 451, label: "体の音", value: "bodily noises" },
+  { id: 452, label: "下品または冒涜的な言葉", value: "profanity" },
+  { id: 453, label: "感嘆符（！）など", value: "exclamation point" },
+  { id: 454, label: "疑問を表す記号（？）", value: "question mark" },
+  { id: 455, label: "?!", value: "?!" },
+  { id: 456, label: "感情表現記号", value: "emanata" },
+  { id: 457, label: "何", value: "what" },
+  { id: 458, label: "ハートマーク", value: "heart icon" },
 ];
 
 export const cameraCategory: PromptCategory[] = [
