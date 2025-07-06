@@ -83,9 +83,10 @@ const skinshipPrompts: PromptOption[] = [
 
 const sexPrompts: PromptOption[] = [
   { id: 1066, label: "sex", value: "sex" },
-  { id: 1067, label: "騎乗位", value: "cowgirl position" },
-  { id: 1068, label: "バック", value: "sex from behind" },
-  { id: 1069, label: "アナルセックス", value: "anal sex" },
+  { id: 1067, label: "性的絶頂", value: "orgasm" },
+  { id: 1068, label: "騎乗位", value: "cowgirl position" },
+  { id: 1069, label: "バック", value: "sex from behind" },
+  { id: 1070, label: "アナルセックス", value: "anal sex" },
 ];
 
 const playCategory: PromptCategory[] = [
