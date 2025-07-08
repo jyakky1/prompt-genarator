@@ -4,6 +4,7 @@ import { Typography, Button, Space, Switch, Breadcrumb, Tag } from "antd";
 import { ArrowLeftOutlined, CloseOutlined } from "@ant-design/icons";
 import { prompts } from "../constants/index";
 import PromptForm from "../components/promptForm";
+import PresetSelector from "../components/presetSelector";
 import { useCurrentPrompts } from "../hooks/useCurrentPrompts";
 import { PromptCategory, PromptOption } from "../constants/types";
 
@@ -71,6 +72,19 @@ export default function Index() {
     );
   };
 
+  // プリセット適用ハンドラー
+  const handleApplyPreset = (presetPrompts: PromptOption[]) => {
+    setSelectedPromptList(presetPrompts);
+    const promptValues = presetPrompts.map((p) => p.value).join(", ");
+    setPrompt(promptValues);
+  };
+
+  // プリセット保存ハンドラー（Phase 2で実装予定）
+  const handleSaveCurrentAsPreset = () => {
+    // TODO: Phase 2でプリセット保存モーダルを表示
+    console.log("プリセット保存機能は Phase 2 で実装予定です");
+  };
+
   const currentTags = useCurrentPrompts(prompts, selectedCategory);
 
   // Breadcrumb itemsを生成
@@ -101,6 +115,11 @@ export default function Index() {
       <Breadcrumb
         style={{ marginBottom: "16px", cursor: "pointer" }}
         items={breadcrumbItems}
+      />
+      <PresetSelector
+        onApplyPreset={handleApplyPreset}
+        onSaveCurrentAsPreset={handleSaveCurrentAsPreset}
+        currentPrompts={selectedPrompt}
       />
       <div>
         <Text strong>プロンプトタグ</Text>
