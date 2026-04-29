@@ -4,8 +4,10 @@ import { Typography, Button, Space, Switch, Breadcrumb, Tag } from "antd";
 import { ArrowLeftOutlined, CloseOutlined } from "@ant-design/icons";
 import { prompts } from "../constants/index";
 import PromptForm from "../components/promptForm";
+import PresetManager from "../components/PresetManager";
 import { useCurrentPrompts } from "../hooks/useCurrentPrompts";
-import { PromptCategory, PromptOption } from "../constants/types";
+import { usePresets } from "../hooks/usePresets";
+import { PromptCategory, PromptOption, Preset } from "../constants/types";
 
 const { Title, Text } = Typography;
 
@@ -69,6 +71,13 @@ export default function Index() {
     setSelectedPromptList((prev) =>
       prev.filter((prevPrompt) => prevPrompt.id !== removePrompt.id)
     );
+  };
+
+  const { presets, addPreset, removePreset } = usePresets();
+
+  const handleApplyPreset = (preset: Preset) => {
+    setPrompt(preset.prompt);
+    setSelectedPromptList(preset.selectedPrompts);
   };
 
   const currentTags = useCurrentPrompts(prompts, selectedCategory);
@@ -158,6 +167,16 @@ export default function Index() {
             );
           })}
         </Space>
+      </div>
+      <div style={{ marginBottom: "16px" }}>
+        <PresetManager
+          presets={presets}
+          currentPrompt={prompt}
+          currentSelectedPrompts={selectedPrompt}
+          onSave={addPreset}
+          onApply={handleApplyPreset}
+          onRemove={removePreset}
+        />
       </div>
       <PromptForm prompt={prompt} setPrompt={setPrompt} onClear={handleClear} />
     </div>
