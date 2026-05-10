@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { PromptCategory, PromptOption } from "../constants/types";
+import { PromptCategory, PromptOption } from "~/types/prompt";
 
 export function useCurrentPrompts(
   allCategorys: PromptCategory[],
