@@ -1,11 +1,13 @@
 import type { MetaFunction } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
+import { json } from "@remix-run/node";
 import { useState } from "react";
-import { Typography, Button, Space, Switch, Breadcrumb, Tag } from "antd";
+import { Typography, Button, Space, Switch, Breadcrumb, Tag, Spin } from "antd";
 import { ArrowLeftOutlined, CloseOutlined } from "@ant-design/icons";
-import { prompts } from "../constants/index";
 import PromptForm from "../components/promptForm";
 import { useCurrentPrompts } from "../hooks/useCurrentPrompts";
-import { PromptCategory, PromptOption } from "../constants/types";
+import type { PromptCategory, PromptOption } from "~/types/prompt";
+import { loadPrompts } from "~/lib/prompt-loader.server";
 
 const { Title, Text } = Typography;
 
@@ -19,7 +21,13 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+export async function loader() {
+  const prompts = await loadPrompts();
+  return json({ prompts });
+}
+
 export default function Index() {
+  const { prompts } = useLoaderData<typeof loader>();
   const [prompt, setPrompt] = useState("");
   const [nsfwEnabled, setNsfwEnabled] = useState(false);
   const [currentLevel, setCurrentLevel] = useState(0);
@@ -71,9 +79,11 @@ export default function Index() {
     );
   };
 
-  const currentTags = useCurrentPrompts(prompts, selectedCategory);
+  const currentTags = useCurrentPrompts(
+    prompts as PromptCategory[],
+    selectedCategory
+  );
 
-  // Breadcrumb itemsを生成
   const breadcrumbItems = [
     { title: "top", onClick: () => handleBreadcrumbClick(0) },
     ...selectedCategory.map((option, index) => ({
