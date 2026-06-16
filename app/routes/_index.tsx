@@ -1,12 +1,26 @@
 import type { MetaFunction } from "@remix-run/react";
 import { useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
-import { useState } from "react";
-import { Typography, Button, Space, Switch, Breadcrumb, Tag, Spin } from "antd";
-import { ArrowLeftOutlined, CloseOutlined } from "@ant-design/icons";
+import { useMemo, useState } from "react";
+import {
+  Typography,
+  Button,
+  Space,
+  Switch,
+  Breadcrumb,
+  Tag,
+  Drawer,
+} from "antd";
+import {
+  ArrowLeftOutlined,
+  CloseOutlined,
+  UnorderedListOutlined,
+} from "@ant-design/icons";
 import PromptForm from "../components/promptForm";
+import PresetPanel from "../components/preset/PresetPanel";
 import { useCurrentPrompts } from "../hooks/useCurrentPrompts";
 import type { PromptCategory, PromptOption } from "~/types/prompt";
+import type { TagPreset } from "~/types/preset";
 import { loadPrompts } from "~/lib/prompt-loader.server";
 
 const { Title, Text } = Typography;
@@ -30,6 +44,7 @@ export default function Index() {
   const { prompts } = useLoaderData<typeof loader>();
   const [prompt, setPrompt] = useState("");
   const [nsfwEnabled, setNsfwEnabled] = useState(false);
+  const [presetDrawerOpen, setPresetDrawerOpen] = useState(false);
   const [currentLevel, setCurrentLevel] = useState(0);
   // 親も含め、選択されたcategory情報を格納している
   // この中にvalueを持つ末端ノードの情報は入らない
@@ -66,6 +81,11 @@ export default function Index() {
     setNsfwEnabled(checked);
   };
 
+  const handleApplyPreset = (preset: TagPreset) => {
+    setSelectedPromptList(preset.options);
+    setPrompt(preset.options.map((option) => option.value).join(", "));
+  };
+
   const handleRemoveValue = (removePrompt: PromptOption) => {
     setPrompt((prev) => {
       const newPrompt = prev
@@ -83,6 +103,21 @@ export default function Index() {
     prompts as PromptCategory[],
     selectedCategory
   );
+
+  // プロンプト欄のテキストを元にプリセット対象タグを生成する
+  // 登録済みタグは元のidを引き継ぎ、未登録タグは負のidを付与して区別する
+  const presetTags = useMemo<PromptOption[]>(() => {
+    return prompt
+      .split(", ")
+      .map((value) => value.trim())
+      .filter((value) => value.length > 0)
+      .map((value, index) => {
+        const matched = selectedPrompt.find(
+          (option) => option.value === value
+        );
+        return matched ?? { id: -(index + 1), label: value, value };
+      });
+  }, [prompt, selectedPrompt]);
 
   const breadcrumbItems = [
     { title: "top", onClick: () => handleBreadcrumbClick(0) },
@@ -108,18 +143,24 @@ export default function Index() {
           style={{ marginLeft: "8px" }}
         />
       </div>
-      <Breadcrumb
-        style={{ marginBottom: "16px", cursor: "pointer" }}
-        items={breadcrumbItems}
-      />
-      <div>
-        <Text strong>プロンプトタグ</Text>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          marginBottom: "16px",
+        }}>
         <Button
+          type="text"
           icon={<ArrowLeftOutlined />}
           onClick={() => handleBreadcrumbClick(currentLevel - 1)}
-          disabled={currentLevel === 0}
-          style={{ marginLeft: "8px" }}
-        />
+          disabled={currentLevel === 0}>
+          戻る
+        </Button>
+        <Breadcrumb style={{ cursor: "pointer" }} items={breadcrumbItems} />
+      </div>
+      <div>
+        <Text strong>プロンプトタグ</Text>
       </div>
       <div>
         <Space wrap style={{ marginTop: "16px" }}>
@@ -131,8 +172,11 @@ export default function Index() {
                 justifyContent: "center",
                 alignItems: "center",
                 cursor: "pointer",
+                color: "#1668dc",
+                borderColor: "#1668dc",
+                background: "transparent",
               }}
-              color="#1668dc"
+              bordered
               key={value.id}
               onClick={() => handleRemoveValue(value)}
               icon={<CloseOutlined />}>
@@ -151,7 +195,8 @@ export default function Index() {
             return isSelected && "id" in option ? (
               <Button
                 key={index}
-                type="primary"
+                variant="dashed"
+                color="primary"
                 onClick={() => handleRemoveValue(option)}
                 style={{ cursor: "pointer" }}>
                 {option.label}
@@ -159,7 +204,8 @@ export default function Index() {
             ) : (
               <Button
                 key={index}
-                type="default"
+                variant="filled"
+                color="default"
                 onClick={() => handleOptionClick(option)}
                 disabled={false}
                 style={{ cursor: "pointer" }}>
@@ -169,7 +215,27 @@ export default function Index() {
           })}
         </Space>
       </div>
+      <div style={{ marginBottom: "16px" }}>
+        <Button
+          icon={<UnorderedListOutlined />}
+          onClick={() => setPresetDrawerOpen(true)}>
+          プリセットを開く
+        </Button>
+      </div>
       <PromptForm prompt={prompt} setPrompt={setPrompt} onClear={handleClear} />
+      <Drawer
+        title="プリセット"
+        placement="left"
+        open={presetDrawerOpen}
+        onClose={() => setPresetDrawerOpen(false)}
+        closable={false}
+        maskClosable
+        width={360}>
+        <PresetPanel
+          presetTags={presetTags}
+          onApplyPreset={handleApplyPreset}
+        />
+      </Drawer>
     </div>
   );
 }
