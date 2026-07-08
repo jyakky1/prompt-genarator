@@ -1,5 +1,14 @@
 import { FC, useState } from "react";
-import { Button, List, Space, Typography, Popconfirm, message, Tag } from "antd";
+import {
+  Button,
+  Collapse,
+  List,
+  Space,
+  Typography,
+  Popconfirm,
+  message,
+  Tag,
+} from "antd";
 import { PlusOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import type { PromptOption } from "~/types/prompt";
 import type { TagPreset } from "~/types/preset";
@@ -64,7 +73,8 @@ const PresetPanel: FC<PresetPanelProps> = ({ presetTags, onApplyPreset }) => {
         block
         icon={<PlusOutlined />}
         onClick={handleOpenCreate}
-        style={{ marginBottom: "16px" }}>
+        style={{ marginBottom: "16px" }}
+      >
         現在の選択を保存
       </Button>
       <List
@@ -76,37 +86,53 @@ const PresetPanel: FC<PresetPanelProps> = ({ presetTags, onApplyPreset }) => {
           <List.Item>
             <Space direction="vertical" size={8} style={{ width: "100%" }}>
               <Text strong>{preset.name}</Text>
-              <Space wrap size={[4, 4]}>
-                {preset.options.map((option) => (
-                  <Tag key={option.id}>
-                    {option.id < 0 ? option.value : option.label}
-                  </Tag>
-                ))}
-              </Space>
+              <Collapse
+                ghost
+                size="small"
+                items={[
+                  {
+                    key: "tags",
+                    label: `タグ (${preset.options.length}件)`,
+                    children: (
+                      <Space wrap size={[4, 4]} style={{ width: "100%" }}>
+                        {preset.options.map((option) => (
+                          <Tag key={option.id}>
+                            {option.id < 0 ? option.value : option.label}
+                          </Tag>
+                        ))}
+                      </Space>
+                    ),
+                  },
+                ]}
+              />
               <Space size="small">
                 <Button
                   type="link"
                   size="small"
-                  onClick={() => onApplyPreset(preset)}>
+                  onClick={() => onApplyPreset(preset)}
+                >
                   呼び出し
                 </Button>
                 <Button
                   type="link"
                   size="small"
                   icon={<EditOutlined />}
-                  onClick={() => handleOpenEdit(preset)}>
+                  onClick={() => handleOpenEdit(preset)}
+                >
                   編集
                 </Button>
                 <Popconfirm
                   title="このプリセットを削除しますか?"
                   okText="削除"
                   cancelText="キャンセル"
-                  onConfirm={() => handleDelete(preset)}>
+                  onConfirm={() => handleDelete(preset)}
+                >
                   <Button
                     type="link"
                     size="small"
                     danger
-                    icon={<DeleteOutlined />}>
+                    icon={<DeleteOutlined />}
+                  >
                     削除
                   </Button>
                 </Popconfirm>
