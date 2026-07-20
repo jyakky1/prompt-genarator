@@ -21,6 +21,19 @@ function loadFromStorage(): TagPreset[] {
   }
 }
 
+// カンマ区切りを正規化し、空要素を除いたうえで個別タグとして整える
+function normalizeOptions(options: PromptOption[]): PromptOption[] {
+  const cleanedValues = options
+    .flatMap((option) => option.value.split(","))
+    .map((value) => value.trim())
+    .filter((value) => value.length > 0);
+
+  return cleanedValues.map((value, index) => {
+    const matched = options.find((option) => option.value === value);
+    return matched ?? { id: -(index + 1), label: value, value };
+  });
+}
+
 export function useTagPresets() {
   const [presets, setPresets] = useState<TagPreset[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -43,7 +56,7 @@ export function useTagPresets() {
     const newPreset: TagPreset = {
       id: crypto.randomUUID(),
       name,
-      options,
+      options: normalizeOptions(options),
       updatedAt: Date.now(),
     };
     setPresets((prev) => [...prev, newPreset]);
@@ -57,7 +70,7 @@ export function useTagPresets() {
             ? {
                 ...preset,
                 name: payload.name,
-                options: payload.options,
+                options: normalizeOptions(payload.options),
                 updatedAt: Date.now(),
               }
             : preset
